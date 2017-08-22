@@ -1,0 +1,214 @@
+@import 'vars';
+@import 'reset';
+@import 'mixins';
+@import 'animations';
+
+body {
+  color: $black;
+  background-color: $white;
+  -webkit-font-smoothing: subpixel-antialiased;
+  font: 16px/20px $base-font-family;
+  font-weight: 400;
+}
+
+h1 {
+  font-weight: 400;
+  font-size: 2em; }
+
+h2 {
+  font-weight: 400;
+  font-size: 1.5em; }
+
+h3 {
+  font-weight: 400;
+  font-size: 1.2em; }
+
+*[class*='button--'] {
+  padding: 0.5em 1em;
+  border-radius: 0.2em;
+  display: inline-block;
+  @include ease(64ms);
+  cursor: pointer;
+  position: relative;
+  min-width: 3em;
+  min-height: 1em;
+  text-align: center;
+  margin-top: 1em;
+  text-decoration: none;
+
+  > div { display: inline-block; }
+
+  svg {
+    height: 1em;
+    width: 1em;
+    margin-right: 0.5em;
+    display: inline-block;
+    transform: translateY(2px);
+  }
+
+  &:nth-child(n + 1) { margin-right: 1em; }
+  &:last-child { margin-right: 0; }
+
+  &.button--normal {
+    background: $grey10;
+    color: $grey90;
+    svg use { fill: $grey90; }
+    &:hover { background: lighten($grey10, 1%)}
+  }
+
+  &.button--info {
+    background: $blue40;
+    color: $brightwhite;
+    svg use { fill: $brightwhite; }
+    &:hover { background: lighten($blue60, 5%)}
+  }
+
+  &.button--callout {
+    background: $yellow40;
+    color: $black;
+    svg use { fill: $black; }
+    &:hover { background: lighten($yellow40, 5%)}
+  }
+
+  &.button--warning {
+    background: $red40;
+    color: $brightwhite;
+    svg use { fill: $brightwhite; }
+    &:hover { background: lighten($red40, 5%)}
+  }
+
+  &.button--soft-disabled, .button--soft-disabled:hover {
+    cursor: default;
+
+    &.button--normal {
+      background: $grey10;
+      color: rgba($grey90, 0.5);
+    }
+
+    &.button--info {
+      background: $blue40;
+      color: rgba($brightwhite, 0.5);
+    }
+
+    &.button--callout {
+      background: $yellow40;
+      color: rgba($black, 0.5);
+    }
+
+    &.button--warning {
+      background: $red40;
+      color: rgba($brightwhite, 0.5);
+    }
+
+  }
+
+  &.button--disabled {
+    &.button--normal { color: rgba($grey90, 0.5); }
+    &.button--info { color: rgba($brightwhite, 0.5); }
+    &.button--callout { color: rgba($black, 0.5); }
+    &.button--warning { color: rgba($brightwhite, 0.5); }
+    pointer-events: none;
+  }
+}
+
+textarea {
+  @include ease(80ms);
+  margin: 1em 0;
+  border: 1px solid $grey10;
+  background-color: $brightwhite;
+  padding: 1em 1.5em;
+  border-radius: 0.2em;
+  resize: none;
+
+  &:hover {
+    border: 1px solid $grey10;
+    background-color: rgba($white, 0.5);
+  }
+
+  &:focus {
+    border: 1px solid $grey00;
+    background-color: $white;
+  }
+}
+
+input[type=text], input[type=password] {
+  @include ease(80ms);
+  border-bottom: 1px solid $grey20;
+  background-color: $brightwhite;
+  padding: 0.5em 0;
+  border-radius: 0;
+
+  background-repeat: no-repeat;
+  background-size: 1em;
+  transition: background-size 0.2s cubic-bezier(.46,.17,.5,1.14);
+  background-position: right 1em center;
+  overflow-x: hidden;
+
+  &.no-bg {
+    background-size: 0;
+    transition: background-size 0.2s ease-out;
+  }
+
+  &:hover { border-bottom-color: $grey30; }
+  &:focus { border-bottom-color: $grey30; }
+}
+
+
+.topHelpLink {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 3em;
+  z-index: 120;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: $white;
+  border-bottom: 1px solid $grey00;
+  -webkit-animation-duration: 1s;
+  animation-duration: 1s;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+  @extend .fadeInDown;
+  @include animation-delay(3s);
+
+  > a {
+    color: $grey70;
+    text-decoration: none;
+  }
+}
+
+.section-switcher {
+  display: flex;
+  width: 100vw;
+  margin-top: 3.5em;
+  height: calc(100vh - 3.5em);
+  justify-content: center;
+  align-items: center;
+}
+
+section {
+  position: relative;
+  max-width: 800px;
+  width: 100%;
+  height: 100%;
+  -webkit-overflow-scrolling: touch;
+  background-color: $white;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  cursor: default;
+
+  &.chat-section {
+    overflow-y: hidden;
+    -webkit-overflow-scrolling: touch;
+    justify-content: flex-end;
+    flex-direction: column;
+    align-items: stretch;
+    display: flex;
+    flex-grow: 1;
+  }
+}

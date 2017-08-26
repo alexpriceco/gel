@@ -1,4 +1,6 @@
 import React, { Component } from 'react'
+
+import base from '../components/general/rebase'
 import Selector from '../components/selector/selector'
 import Style from '../components/general/style'
 import sheet from '../components/base.scss'
@@ -9,8 +11,18 @@ export class Layout extends Component {
   constructor (props, context) {
     super(props, context)
     this.state = {
-      activeSection: 'day'
+      activeSection: 'day',
+      loading: true
     }
+  }
+
+  componentDidMount () {
+    this.ref = base.syncState('alexprice', {
+      context: this,
+      state: 'timeline',
+      asArray: true,
+      then: (res) => { console.info(res) }
+    })
   }
 
   renderSection (section) {

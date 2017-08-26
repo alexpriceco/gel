@@ -1,15 +1,17 @@
 import apiKey from '../../config/firebase-api-key.js'
-let Rebase = require('re-base')
-let firebase = require('firebase')
+import firebase from 'firebase'
+import Rebase from 're-base'
 
-let app = firebase.initializeApp({
+const config = {
   apiKey: apiKey,
   authDomain: 'gel-fb.firebaseio.com',
   databaseURL: 'https://gel-fb.firebaseio.com',
   projectId: 'gel-fb'
-})
+}
 
-console.info(app)
+if (!firebase.apps.length) {
+  firebase.initializeApp(config)
+}
 
-let base = Rebase.createClass(app.database())
+let base = Rebase.createClass(firebase.apps[0].database())
 export default base

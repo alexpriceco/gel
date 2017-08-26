@@ -20,8 +20,7 @@ export class Layout extends Component {
     this.ref = base.syncState('alexprice', {
       context: this,
       state: 'timeline',
-      asArray: true,
-      then: (res) => { console.info(res) }
+      then: () => this.setState({ loading: false })
     })
   }
 

@@ -24,6 +24,7 @@ export class Selector extends Component {
             if (option === this.state.selected) {
               return (
                 <div
+                  key={option}
                   onClick={() => this.updateSelected(option)}
                   className='selector--option selector--selected'>
                   { option }
@@ -32,6 +33,7 @@ export class Selector extends Component {
             } else {
               return (
                 <div
+                  key={option}
                   onClick={() => this.updateSelected(option)}
                   className='selector--option'>
                   { option }

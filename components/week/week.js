@@ -4,12 +4,12 @@ export class Week extends Component {
   render () {
     return (
       <section className='week'>
-        <article className='log'>
-          LOG
+        <article className='timeline'>
+          TODO
         </article>
 
         <article className='analytics'>
-          ANALYTICS
+          TODO
         </article>
       </section>
     )

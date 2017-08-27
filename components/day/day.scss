@@ -7,4 +7,39 @@ section.day {
   justify-content: space-between;
   height: 100%;
   width: 100%;
+
+  .log--container {
+    width: 50%;
+
+    table {
+      width: 100%;
+
+      td { color: $grey50; }
+      thead tr th { padding-bottom: 0.5em; }
+      tbody tr td { padding-bottom: 0.25em; }
+      thead tr th,
+      tbody tr td {
+        text-align: left;
+        font-weight: 400;
+        font-style: normal;
+        padding-right: 1em;
+        display: table-cell;
+      }
+    }
+
+    .entry--container {
+      width: 100%;
+      tr {
+        font-size: 1em;
+        margin-top: 1em;
+      }
+
+      .entry--end-time {
+        width: 6em;
+      }
+
+      .entry--activity {}
+      .entry--category {}
+    }
+  }
 }

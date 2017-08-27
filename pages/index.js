@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 
 import base from '../components/general/rebase'
+import Loader from '../components/general/loader'
 import Selector from '../components/selector/selector'
 import Style from '../components/general/style'
 import sheet from '../components/base.scss'
@@ -19,8 +20,9 @@ export class Layout extends Component {
   }
 
   componentDidMount () {
-    this.ref = base.syncState('alexprice', {
+    this.ref = base.syncState(`alexprice/${this.state.selectedDay}`, {
       context: this,
+      asArray: true,
       state: 'timeline',
       then: () => this.setState({ loading: false })
     })
@@ -33,12 +35,12 @@ export class Layout extends Component {
       timeline
     } = this.state
 
-    if (loading) return <div>Loading...</div>
+    if (loading) return <Loader />
 
     switch (section) {
       case 'day': return (
         <Day
-          timeline={timeline[selectedDay]}
+          timeline={timeline}
           selectedDay={selectedDay}
         />
       )

@@ -4,28 +4,32 @@ import Style from './style'
 
 export class Loader extends Component {
   render () {
-    const { style } = this.props || {}
-
-    let color = '#EEEEEE'
-    if (this.props.dark) color = '#333333'
-    if (this.props.halfway) color = '#BABABA'
-    if (this.props.blue) color = '#9CD1F4'
-    if (this.props.callout) color = '#DB9D23'
-    if (this.props.green) color = '#12874B'
-
-    let indicator = '#27DD7E'
-    if (this.props.halfway) indicator = '#1B1B1B'
-    if (this.props.blue) indicator = '#FFFFFF'
-    if (this.props.callout) indicator = '#1B1B1B'
-    if (this.props.green) indicator = '#FFFFFF'
-
     return (
-      <div style={style}>
+      // based on https://codepen.io/suez/pen/myvgdg?editors=1100
+      // adapted for React
+
+      <svg
+        width='300px'
+        height='200px'
+        viewBox='0 0 187.3 93.7'
+        preserveAspectRatio='xMidYMid meet'
+        style={{
+          left: '50%',
+          top: '50%',
+          position: 'absolute',
+          transform: 'translate(-50%, -50%) matrix(1, 0, 0, 1, 0, 0)'
+        }}>
         <Style sheet={sheet} />
-        <div className='_standard-loader' style={{
-          'border': `0.15em solid ${color}`,
-          'borderTop': `0.15em solid ${indicator}`}} />
-      </div>
+        <path
+          fill='none'
+          className='loader'
+          stroke='#ffffff'
+          strokeWidth='2'
+          strokeLinecap='round'
+          strokeLinejoin='round'
+          strokeMiterlimit='20'
+          d='M93.9,46.4c9.3,9.5,13.8,17.9,23.5,17.9s17.5-7.8,17.5-17.5s-7.8-17.6-17.5-17.5c-9.7,0.1-13.3,7.2-22.1,17.1 c-8.9,8.8-15.7,17.9-25.4,17.9s-17.5-7.8-17.5-17.5s7.8-17.5,17.5-17.5S86.2,38.6,93.9,46.4z' />
+      </svg>
     )
   }
 }

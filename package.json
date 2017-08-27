@@ -8,6 +8,7 @@
   "author": "Alex Price <alex@alexprice.co>",
   "license": "MIT",
   "dependencies": {
+    "animejs": "^2.0.2",
     "babel-plugin-wrap-in-js": "^1.1.1",
     "body-parser": "^1.17.1",
     "color-convert": "^1.9.0",
@@ -21,6 +22,7 @@
     "raw-loader": "^0.5.1",
     "re-base": "^3.0.3",
     "react": "^15.4.2",
+    "react-anime": "^0.3.4",
     "react-dom": "^15.4.2",
     "react-transition-group": "^1.1.3",
     "redux": "^3.6.0",

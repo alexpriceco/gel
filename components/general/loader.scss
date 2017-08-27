@@ -1,24 +1,28 @@
 @import '../mixins.scss';
 @import '../vars.scss';
 
-._standard-loader {
-  border: 0.15em solid $grey00;
-  border-top: 0.15em solid $black;
-  border-radius: 50%;
-  width: 0.825em;
-  height: 0.825em;
-  -webkit-animation: _standard-loader 1.5s linear infinite;
-  animation: _standard-loader 1.5s linear infinite;
-  margin: 0 auto;
-}
+// based on https://codepen.io/suez/pen/myvgdg?editors=1100
+// adapted for React
 
-@include keyframes('_standard-loader') {
-  0% {
-    -webkit-transform: rotate(0deg);
-    transform: rotate(0deg);
+$len: 242.776657104492px;
+$time: 1.2s;
+.loader {
+  transform: scale(0.5);
+  stroke-dasharray: $len*0.01, $len;
+  stroke-dashoffset: 0;
+  animation: anim $time linear infinite;
+}
+@keyframes anim {
+  12.5% {
+    stroke-dasharray: $len*0.14, $len;
+    stroke-dashoffset: -$len*0.11;
+  }
+  43.75% {
+    stroke-dasharray: $len*0.35, $len;
+    stroke-dashoffset: -$len*0.35;
   }
   100% {
-    -webkit-transform: rotate(360deg);
-    transform: rotate(360deg);
+    stroke-dasharray: $len*0.01, $len;
+    stroke-dashoffset: -$len*0.99;
   }
 }

@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import _ from 'lodash'
 
+import Input from '../general/input'
 import Style from '../general/style'
 import sheet from './day.scss'
 
@@ -13,6 +14,7 @@ export class Day extends Component {
   }
 
   renderLog () {
+    let lastKey = 0
     let renderedLog = []
     const { timeline } = this.state
     let sortedTimeline = _.orderBy(timeline, ['key'])
@@ -27,7 +29,34 @@ export class Day extends Component {
           <td className='entry--category'>{entry.category}</td>
         </tr>
       )
+
+      lastKey = i
     }
+
+    console.debug(lastKey)
+
+    renderedLog.push(
+      <tr className='entry--container' key={lastKey + 'lol'}>
+        <td className='entry--end-time'>
+          <Input
+            placeholder='2400'
+            type='time'
+          />
+        </td>
+        <td className='entry--activity'>
+          <Input
+            placeholder='activity'
+            type='activity'
+          />
+        </td>
+        <td className='entry--category'>
+          <Input
+            placeholder='category'
+            type='category'
+          />
+        </td>
+      </tr>
+    )
 
     return (
       <table className='log--rows'>

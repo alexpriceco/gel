@@ -1,0 +1,10 @@
+@import '../base';
+
+section.day {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: space-between;
+  height: 100%;
+  width: 100%;
+}

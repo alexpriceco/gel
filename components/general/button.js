@@ -4,7 +4,6 @@ import Style from './style'
 
 export class Button extends Component {
   render () {
-    console.info(this.props)
     return (
       <div
         className='button'

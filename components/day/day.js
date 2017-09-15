@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import moment from 'moment'
 import _ from 'lodash'
 
 import Button from '../general/button'
@@ -74,8 +75,15 @@ export class Day extends Component {
     )
   }
 
+  moveInTime (direction) {
+    const date = moment(this.props.selectedDay)
+    const newDate = moment(date).add(direction, 'days')
+    this.props.updateDate(newDate.toISOString())
+  }
+
   render () {
     const { selectedDay } = this.props
+    console.info(selectedDay)
     return (
       <section className='day'>
         <Style sheet={sheet} />
@@ -88,16 +96,15 @@ export class Day extends Component {
                 { selectedDay.substring(0, 10) }
               </span>
             </h2>
-
             <div>
               <Button
                 content={'<'}
-                action={() => console.info('back a day')}
+                action={() => this.moveInTime(-1)}
               />
               <Button
                 content={'>'}
-                action={() => console.info('forward a day')}
-                active={false}
+                action={() => this.moveInTime(1)}
+                active={!(moment(selectedDay).isSame(moment(), 'day'))}
               />
             </div>
           </div>

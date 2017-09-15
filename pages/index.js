@@ -13,14 +13,16 @@ export class Layout extends Component {
     super(props, context)
     this.state = {
       selectedDay: new Date(new Date().setHours(0, 0, 0, 0))
-        .toISOString().replace(/\./, ''),
+        .toISOString(),
       activeSection: 'day',
       loading: true
     }
   }
 
   componentDidMount () {
-    this.ref = base.syncState(`alexprice/${this.state.selectedDay}`, {
+    console.info(typeof this.state.selectedDay)
+    const date = this.state.selectedDay.replace(/\./, '')
+    this.ref = base.syncState(`alexprice/${date}`, {
       context: this,
       asArray: true,
       state: 'timeline',
@@ -42,6 +44,9 @@ export class Layout extends Component {
         <Day
           timeline={timeline}
           selectedDay={selectedDay}
+          updateDate={(selectedDay) => {
+            this.setState({ selectedDay })
+          }}
         />
       )
       case 'week': return (

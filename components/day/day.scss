@@ -2,15 +2,16 @@
 
 section.day {
   display: flex;
-  flex-direction: row;
-  align-items: flex-start;
-  justify-content: space-between;
+  flex-direction: column;
   height: 100%;
   width: 100%;
 
-  .log--container {
-    width: 50%;
+  article {
+    margin-bottom: 4em;
+    width: 100%;
+  }
 
+  .log--container {
     table {
       width: 100%;
 
@@ -43,3 +44,18 @@ section.day {
     }
   }
 }
+
+@media (min-width: 800px) {
+  section.day {
+    flex-direction: row;
+    justify-content: space-between;
+
+    article.log--container { width: calc(60% - 2em); }
+    article.analytics--container { width: calc(40% - 2em); }
+  }
+}
+
+// larger screens
+// flex-direction: row;
+// align-items: flex-start;
+// justify-content: space-between;

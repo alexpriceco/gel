@@ -47,7 +47,7 @@ export class Layout extends Component {
       case 'week': return (
         <Week />
       )
-      default: return <div>Err</div>
+      default: return (<div>Err</div>)
     }
   }
 
@@ -58,11 +58,11 @@ export class Layout extends Component {
           <h1>Gel</h1>
 
           <Selector
+            defaultOption={'Day'}
             options={['Infinite', 'Week', 'Day']}
             updateSelected={(option) => {
               this.setState({ activeSection: option.toLowerCase() })
             }}
-            defaultOption={'Day'}
           />
 
           <Style sheet={sheet} />

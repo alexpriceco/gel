@@ -33,8 +33,6 @@ export class Day extends Component {
       lastKey = i
     }
 
-    console.debug(lastKey)
-
     renderedLog.push(
       <tr className='entry--container' key={lastKey + 'lol'}>
         <td className='entry--end-time'>
@@ -82,12 +80,17 @@ export class Day extends Component {
         <Style sheet={sheet} />
 
         <article className='log--container'>
-          <h2>Log <span>// { selectedDay.substring(0, 10) }</span></h2>
+          <h2>Log
+          <span>&nbsp;//&nbsp;
+            { selectedDay.substring(0, 10) }
+          </span>
+          </h2>
           { this.renderLog() }
         </article>
 
         <article className='analytics--container'>
-          ANALYTICS
+          <h2>ANALYTICS</h2>
+          TODO SOON
         </article>
       </section>
     )

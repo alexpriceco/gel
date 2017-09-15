@@ -18,4 +18,9 @@
   &:hover {
     border: 1px solid $grey50;
   }
+
+  &.inactive, &.inactive:hover {
+    border: 1px solid $grey80;
+    color: $grey70;
+  }
 }

@@ -20,13 +20,21 @@ export class Layout extends Component {
   }
 
   componentDidMount () {
-    console.info(typeof this.state.selectedDay)
-    const date = this.state.selectedDay.replace(/\./, '')
-    this.ref = base.syncState(`alexprice/${date}`, {
+    const date = this.state.selectedDay.substring(0, 10)
+    this.updateDataFor(date)
+  }
+
+  updateDataFor (date) {
+    this.ref = base.fetch(`alexprice/${date}`, {
       context: this,
       asArray: true,
-      state: 'timeline',
-      then: () => this.setState({ loading: false })
+      state: `timeline_${date}`,
+      then: (data) => {
+        this.setState({
+          loading: false,
+          [`timeline_${date}`]: data
+        })
+      }
     })
   }
 
@@ -34,7 +42,7 @@ export class Layout extends Component {
     const {
       loading,
       selectedDay,
-      timeline
+      [`timeline_${selectedDay.substring(0, 10)}`]: timeline
     } = this.state
 
     if (loading) return <Loader />
@@ -45,7 +53,9 @@ export class Layout extends Component {
           timeline={timeline}
           selectedDay={selectedDay}
           updateDate={(selectedDay) => {
+            this.updateDataFor(selectedDay.substring(0, 10))
             this.setState({ selectedDay })
+            console.info(this.state)
           }}
         />
       )

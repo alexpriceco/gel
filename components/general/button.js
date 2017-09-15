@@ -4,12 +4,12 @@ import Style from './style'
 
 export class Button extends Component {
   render () {
+    const { active: status } = this.props
+    const active = !(status === false)
     return (
       <div
-        className='button'
-        onClick={(this.props.active !== false)
-          ? this.props.action
-          : null}
+        className={'button' + (active ? '' : ' inactive')}
+        onClick={active ? this.props.action : null}
       >
         <Style sheet={sheet} />
         {this.props.content}

@@ -15,6 +15,10 @@ export class Day extends Component {
     }
   }
 
+  componentWillReceiveProps (nextProps) {
+    this.setState({ timeline: nextProps.timeline })
+  }
+
   renderLog () {
     let lastKey = 0
     let renderedLog = []
@@ -24,11 +28,27 @@ export class Day extends Component {
     for (let i in sortedTimeline) {
       const entry = sortedTimeline[i]
       const time = `${entry.key.slice(0, 2)}:${entry.key.slice(2)}`
+
       renderedLog.push(
         <tr className='entry--container' key={i}>
-          <td className='entry--end-time'>{time}</td>
-          <td className='entry--activity'>{entry.activity}</td>
-          <td className='entry--category'>{entry.category}</td>
+          <td className='entry--end-time'>
+            <Input
+              value={time}
+              type='time'
+            />
+          </td>
+          <td className='entry--activity'>
+            <Input
+              value={entry.activity}
+              type='activity'
+            />
+          </td>
+          <td className='entry--category'>
+            <Input
+              value={entry.category}
+              type='category'
+            />
+          </td>
         </tr>
       )
 
@@ -83,7 +103,6 @@ export class Day extends Component {
 
   render () {
     const { selectedDay } = this.props
-    console.info(selectedDay)
     return (
       <section className='day'>
         <Style sheet={sheet} />

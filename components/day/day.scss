@@ -12,10 +12,29 @@ section.day {
   }
 
   .log--container {
+    div.header {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+    }
+
     table {
       width: 100%;
+      border-collapse: collapse;
+      border-spacing: 0;
 
-      td { color: $grey50; }
+      td {
+        color: $grey50;
+        border: none;
+        padding: 0;
+        margin: 0;
+
+        input {
+          width: 100%;
+        }
+      }
+
       thead tr th { padding-bottom: 0.5em; }
       tbody tr td { padding-bottom: 0.25em; }
       thead tr th,
@@ -25,6 +44,10 @@ section.day {
         font-style: normal;
         padding-right: 1em;
         display: table-cell;
+
+        &:last-of-type {
+          padding-right: 0;
+        }
       }
     }
 
@@ -36,7 +59,7 @@ section.day {
       }
 
       .entry--end-time {
-        width: 6em;
+        min-width: 6em;
       }
 
       .entry--activity {}

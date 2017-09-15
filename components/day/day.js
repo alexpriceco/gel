@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import _ from 'lodash'
 
+import Button from '../general/button'
 import Input from '../general/input'
 import Style from '../general/style'
 import sheet from './day.scss'
@@ -80,11 +81,26 @@ export class Day extends Component {
         <Style sheet={sheet} />
 
         <article className='log--container'>
-          <h2>Log
-          <span>&nbsp;//&nbsp;
-            { selectedDay.substring(0, 10) }
-          </span>
-          </h2>
+          <div className='header'>
+            <h2>
+              Log
+              <span>&nbsp;//&nbsp;
+                { selectedDay.substring(0, 10) }
+              </span>
+            </h2>
+
+            <div>
+              <Button
+                content={'<'}
+                action={() => console.info('back a day')}
+              />
+              <Button
+                content={'>'}
+                action={() => console.info('forward a day')}
+                active={false}
+              />
+            </div>
+          </div>
           { this.renderLog() }
         </article>
 

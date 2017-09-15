@@ -33,7 +33,9 @@ h1 {
 
 h2 {
   font-size: 2em;
-  margin-bottom: 1em;
+  line-height: 2.25em;
+  margin-bottom: 0;
+  display: inline-block;
   span { color: $grey50; }
 }
 
@@ -58,7 +60,7 @@ input {
   }
 
   &:focus {
-    background: $grey80;
+    background: $grey70;
   }
 
   &.no-field {
@@ -73,7 +75,7 @@ input {
 
     &:hover {
       background: none;
-      color: $grey80;
+      color: $grey70;
     }
 
     &:focus {

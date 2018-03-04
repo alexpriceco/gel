@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
 
+import Header from '../components/header.js'
+
 import Stylesheet from '../components/general/stylesheet.js'
 import sheet from '../components/base.scss'
 
@@ -20,7 +22,6 @@ export class Index extends Component {
   constructor (props, context) {
     super(props, context)
     this.state = {
-      loading: true,
       error: '',
 
       // Data from Firebase
@@ -29,9 +30,6 @@ export class Index extends Component {
   }
 
   componentDidMount () {
-    console.debug('Loaded')
-    this.setState({ loading: false })
-
   // TODO: uncomment if you want Firebase
   //   this.getDataFromFirebase().then((data) => {
   //     this.setState({
@@ -54,26 +52,9 @@ export class Index extends Component {
   // }
 
   render () {
-    if (this.state.loading) {
-      return (
-        <main>
-          Just a second...
-          <Stylesheet sheet={sheet} />
-        </main>
-      )
-    } else if (this.state.error) {
-      return (
-        <main>
-          <h1>That's bad. The following error occurred:</h1>
-          <div className='error'>{this.state.error}</div>
-          <Stylesheet sheet={sheet} />
-        </main>
-      )
-    }
-
     return (
       <main>
-        <h1>App title</h1>
+        <Header />
         <Stylesheet sheet={sheet} />
       </main>
     )

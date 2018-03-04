@@ -8,15 +8,7 @@ body {
   color: $white;
   -webkit-font-smoothing: subpixel-antialiased;
   font: 16px/20px $base-font-family;
-  padding: 4em 10vw;
   font-weight: 400;
-
-  display: flex;
-  justify-content: center;
-  align-items: flex-end;
-  flex-direction: column;
-
-  > * { width: 100%; }
 }
 
 h1, h2, h3, h4 {
@@ -37,14 +29,6 @@ h2 {
   margin-bottom: 0;
   display: inline-block;
   span { color: $grey50; }
-}
-
-header {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 4em;
 }
 
 input {

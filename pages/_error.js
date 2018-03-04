@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import Style from '../components/general/stylesheet'
+import Style from '../components/general/stylesheet.js'
 import sheet from '../components/base.scss'
 
 export default class Error extends Component {

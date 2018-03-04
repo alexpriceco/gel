@@ -1,92 +1,83 @@
 import React, { Component } from 'react'
 
-import base from '../components/general/rebase'
-import Loader from '../components/general/loader'
-import Selector from '../components/selector/selector'
-import Style from '../components/general/style'
+import Stylesheet from '../components/general/stylesheet.js'
 import sheet from '../components/base.scss'
-import Week from '../components/week/week'
-import Day from '../components/day/day'
 
-export class Layout extends Component {
+// TODO: Uncomment if you want Firebase
+// import config from '../config/firebase-api-key.js'
+// import * as firebase from 'firebase'
+// require('firebase/firestore')
+// if (!firebase.apps.length) {
+//   console.log(
+//     '%cCreating a new firebase instance...',
+//     'color: grey; font-style: italic'
+//   )
+//
+//   firebase.initializeApp(config)
+// }
+
+export class Index extends Component {
   constructor (props, context) {
     super(props, context)
     this.state = {
-      selectedDay: new Date(new Date().setHours(0, 0, 0, 0))
-        .toISOString(),
-      activeSection: 'day',
-      loading: true
+      loading: true,
+      error: '',
+
+      // Data from Firebase
+      data: {}
     }
   }
 
   componentDidMount () {
-    const date = this.state.selectedDay.substring(0, 10)
-    this.updateDataFor(date)
+    console.debug('Loaded')
+    this.setState({ loading: false })
+
+  // TODO: uncomment if you want Firebase
+  //   this.getDataFromFirebase().then((data) => {
+  //     this.setState({
+  //       loading: false,
+  //       data
+  //     })
+  //   }).catch((error) => {
+  //     this.setState({
+  //       loading: false,
+  //       error
+  //     })
+  //   })
   }
 
-  updateDataFor (date) {
-    this.ref = base.fetch(`alexprice/${date}`, {
-      context: this,
-      asArray: true,
-      state: `timeline_${date}`,
-      then: (data) => {
-        this.setState({
-          loading: false,
-          [`timeline_${date}`]: data
-        })
-      }
-    })
-  }
-
-  renderSection (section) {
-    const {
-      loading,
-      selectedDay,
-      [`timeline_${selectedDay.substring(0, 10)}`]: timeline
-    } = this.state
-
-    if (loading) return <Loader />
-
-    switch (section) {
-      case 'day': return (
-        <Day
-          timeline={timeline}
-          selectedDay={selectedDay}
-          updateDate={(selectedDay) => {
-            this.updateDataFor(selectedDay.substring(0, 10))
-            this.setState({ selectedDay })
-            console.info(this.state)
-          }}
-        />
-      )
-      case 'week': return (
-        <Week />
-      )
-      default: return (<div>Err</div>)
-    }
-  }
+  // TODO: uncomment if you want Firebase
+  // async getDataFromFirebase () {
+  //   const rootCollection = firebase.firestore().collection('triplebyte')
+  //   const rootDoc = await rootCollection.doc('root').get()
+  //   return rootDoc.data()
+  // }
 
   render () {
+    if (this.state.loading) {
+      return (
+        <main>
+          Just a second...
+          <Stylesheet sheet={sheet} />
+        </main>
+      )
+    } else if (this.state.error) {
+      return (
+        <main>
+          <h1>That's bad. The following error occurred:</h1>
+          <div className='error'>{this.state.error}</div>
+          <Stylesheet sheet={sheet} />
+        </main>
+      )
+    }
+
     return (
       <main>
-        <header>
-          <h1>Gel</h1>
-
-          <Selector
-            defaultOption={'Day'}
-            options={['Infinite', 'Week', 'Day']}
-            updateSelected={(option) => {
-              this.setState({ activeSection: option.toLowerCase() })
-            }}
-          />
-
-          <Style sheet={sheet} />
-        </header>
-
-        { this.renderSection(this.state.activeSection) }
+        <h1>App title</h1>
+        <Stylesheet sheet={sheet} />
       </main>
     )
   }
 }
 
-export default Layout
+export default Index
